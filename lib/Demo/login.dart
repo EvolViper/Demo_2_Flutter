@@ -83,16 +83,35 @@ class _loginPageState extends State<loginPage> {
             ButtonBar(
               children: <Widget>[
                 TextButton(
-                    onPressed: () {
-                      _usernameController.clear();
-                      _passwordController.clear();
-                    },
-                    child: const Text('CANCEL')),
+                  onPressed: () {
+                    _usernameController.clear();
+                    _passwordController.clear();
+                  },
+                  child: const Text('CANCEL'),
+                  style: ButtonStyle(
+                    foregroundColor: MaterialStateProperty.all(
+                      Theme.of(context).colorScheme.secondary,
+                    ),
+                    shape: MaterialStateProperty.all(
+                      const BeveledRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                      ),
+                    ),
+                  ),
+                ),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
                   child: const Text('LOGIN'),
+                  style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(8.0),
+                    shape: MaterialStateProperty.all(
+                      const BeveledRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(13.0)),
+                      )
+                    ),
+                  ),
                 )
               ],
             ),
