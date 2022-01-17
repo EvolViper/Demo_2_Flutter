@@ -10,6 +10,25 @@ class loginPage extends StatefulWidget {
 class _loginPageState extends State<loginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _unfocusedColor = Colors.grey[600];
+  final _usernameFocusNode = FocusNode();
+  final _passwordFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _usernameFocusNode.addListener(() {
+      setState(() {
+        //Redraw so that the username label reflects the focus state
+      });
+    });
+    _passwordFocusNode.addListener(() {
+      setState(() {
+        //Redraw so that the password label reflects the focus state
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,33 +54,64 @@ class _loginPageState extends State<loginPage> {
             const SizedBox(height: 30.0),
             TextField(
               controller: _usernameController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 // filled: true,
                 labelText: 'Username',
+                labelStyle: TextStyle(
+                  color: _usernameFocusNode.hasFocus
+                      ? Theme.of(context).colorScheme.secondary
+                      : _unfocusedColor,
+                ),
               ),
+              focusNode: _usernameFocusNode,
             ),
             const SizedBox(height: 12.0),
             TextField(
               controller: _passwordController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 // filled: true,
                 labelText: 'Password',
+                labelStyle: TextStyle(
+                  color: _passwordFocusNode.hasFocus
+                      ? Theme.of(context).colorScheme.secondary
+                      : _unfocusedColor,
+                ),
               ),
+              focusNode: _passwordFocusNode,
               obscureText: true,
             ),
             ButtonBar(
               children: <Widget>[
                 TextButton(
-                    onPressed: () {
-                      _usernameController.clear();
-                      _passwordController.clear();
-                    },
-                    child: const Text('CANCEL')),
+                  onPressed: () {
+                    _usernameController.clear();
+                    _passwordController.clear();
+                  },
+                  child: const Text('CANCEL'),
+                  style: ButtonStyle(
+                    foregroundColor: MaterialStateProperty.all(
+                      Theme.of(context).colorScheme.secondary,
+                    ),
+                    shape: MaterialStateProperty.all(
+                      const BeveledRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                      ),
+                    ),
+                  ),
+                ),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
                   child: const Text('LOGIN'),
+                  style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(8.0),
+                    shape: MaterialStateProperty.all(
+                      const BeveledRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(13.0)),
+                      )
+                    ),
+                  ),
                 )
               ],
             ),
