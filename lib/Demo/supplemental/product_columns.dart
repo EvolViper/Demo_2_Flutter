@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:demo_2_flutter/Demo/model/product.dart';
 import 'product_card.dart';
 
-class TwoProductCardColumn extends StatelessWidget{
-  const TwoProductCardColumn({Key? key, required this.bottom, this.top}) : super(key: key);
+class TwoProductCardColumn extends StatelessWidget {
+  const TwoProductCardColumn({Key? key, required this.bottom, this.top})
+      : super(key: key);
 
   final Product bottom;
   final Product? top;
@@ -12,27 +13,29 @@ class TwoProductCardColumn extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints constraints){
+      builder: (BuildContext context, BoxConstraints constraints) {
         const spaceHeight = 44.0;
 
         double heightOfCards = (constraints.biggest.height - spaceHeight) / 2.0;
         double heightOfImages = heightOfCards - ProductCard.kTextBoxHeight;
 
-        double imageAspectRatio = constraints.biggest.width / heightOfImages;
+        double imageAspectRatio = heightOfImages >= 0.0
+            ? constraints.biggest.width / heightOfImages
+            : 49.0 / 33.0;
 
-        return Column(
-          mainAxisAlignment:  MainAxisAlignment.center,
-          crossAxisAlignment:  CrossAxisAlignment.center,
+        return ListView(
+          physics: const ClampingScrollPhysics(),
           children: <Widget>[
             Padding(
               padding: const EdgeInsetsDirectional.only(start: 28.0),
-              child: top!=null
-              ? ProductCard(
-                  imageAspectRatio: imageAspectRatio,
-                  product: top!)
-              : SizedBox(
-                height: heightOfCards,
-              ),
+              child: top != null
+                  ? ProductCard(
+                      imageAspectRatio: imageAspectRatio,
+                      product: top!,
+                    )
+                  : SizedBox(
+                      height: heightOfCards,
+                    ),
             ),
             const SizedBox(height: spaceHeight),
             Padding(
@@ -49,20 +52,27 @@ class TwoProductCardColumn extends StatelessWidget{
   }
 }
 
-class OneProductCardColumn extends StatelessWidget{
-  const OneProductCardColumn({Key? key, this.product}) : super(key: key);
+class OneProductCardColumn extends StatelessWidget {
+  const OneProductCardColumn({Key? key, required this.product})
+      : super(key: key);
 
   final Product product;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
+    return ListView(
+      physics: const ClampingScrollPhysics(),
+      reverse: true,
       children: <Widget>[
-        ProductCard(product: product,),
+        ProductCard(
+          product: product,
+        ),
         const SizedBox(
           height: 40.0,
-        )
+        ),
+        ProductCard(
+          product: product,
+        ),
       ],
     );
   }
