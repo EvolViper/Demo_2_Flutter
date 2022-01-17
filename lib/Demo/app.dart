@@ -47,6 +47,12 @@ ThemeData _buildShrineTheme() {
       selectionColor: kShrinePink400,
     ),
     inputDecorationTheme: const InputDecorationTheme(
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          width: 2.0,
+          color: kShrineBrown900,
+        ),
+      ),
       border: OutlineInputBorder(),
     ),
   );
