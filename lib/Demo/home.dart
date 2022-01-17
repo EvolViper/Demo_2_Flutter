@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'model/product.dart';
 import 'model/products_repository.dart';
 import 'package:intl/intl.dart';
+import 'package:demo_2_flutter/Demo/supplemental/';
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -62,6 +63,7 @@ class HomePage extends StatelessWidget {
     return products.map((product){
       return Card(
         clipBehavior: Clip.antiAlias,
+        elevation: 0.0, // loại bỏ cái hàng shadow bên dưới mỗi mặt hàng
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[

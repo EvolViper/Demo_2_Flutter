@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:demo_2_flutter/Demo/login.dart';
 import 'package:demo_2_flutter/Demo/home.dart';
 import 'package:demo_2_flutter/Demo/colors.dart';
+import 'package:demo_2_flutter/Demo/supplemental/cut_corners_border.dart';
 
 class FissApp extends StatelessWidget {
   const FissApp({Key? key}) : super(key: key);
@@ -53,7 +54,7 @@ ThemeData _buildShrineTheme() {
           color: kShrineBrown900,
         ),
       ),
-      border: OutlineInputBorder(),
+      border: CutCornersBorder(),
     ),
   );
 }
