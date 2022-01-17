@@ -9,8 +9,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Fish'),
-        backgroundColor: Colors.purple,
+        title: const Text('FISH'),
         leading: IconButton(
             onPressed: () {
               print('Menu Here');
@@ -63,7 +62,6 @@ class HomePage extends StatelessWidget {
     return products.map((product){
       return Card(
         clipBehavior: Clip.antiAlias,
-        color: Colors.purple,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -80,16 +78,19 @@ class HomePage extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Text(
                         product.name,
-                        style: theme.textTheme.headline6,
+                        style: theme.textTheme.button,
+                        softWrap: false,
+                        overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),
-                      const SizedBox(height: 8.0),
+                      const SizedBox(height: 4.0),
                       Text(
                         formatter.format(product.price),
-                        style: theme.textTheme.subtitle2,
+                        style: theme.textTheme.caption,
                       )
                     ],
                   ),
