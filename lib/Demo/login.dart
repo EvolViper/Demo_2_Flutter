@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class loginPage extends StatefulWidget{
+class loginPage extends StatefulWidget {
   const loginPage({Key? key}) : super(key: key);
 
   @override
@@ -21,16 +21,22 @@ class _loginPageState extends State<loginPage> {
             const SizedBox(height: 80.0),
             Column(
               children: <Widget>[
-                Image.asset('assets/images/anh-troll-4.jpg', width: 50,),
+                Image.asset(
+                  'assets/images/anh-troll-4.jpg',
+                  width: 50,
+                ),
                 const SizedBox(height: 16.0),
-                const Text('FISH'),
+                Text(
+                  'FISH',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
               ],
             ),
             const SizedBox(height: 30.0),
             TextField(
               controller: _usernameController,
               decoration: const InputDecoration(
-                filled: true,
+                // filled: true,
                 labelText: 'Username',
               ),
             ),
@@ -38,7 +44,7 @@ class _loginPageState extends State<loginPage> {
             TextField(
               controller: _passwordController,
               decoration: const InputDecoration(
-                filled: true,
+                // filled: true,
                 labelText: 'Password',
               ),
               obscureText: true,
@@ -46,16 +52,17 @@ class _loginPageState extends State<loginPage> {
             ButtonBar(
               children: <Widget>[
                 TextButton(
-                    onPressed: (){
+                    onPressed: () {
                       _usernameController.clear();
                       _passwordController.clear();
                     },
                     child: const Text('CANCEL')),
                 ElevatedButton(
-                    onPressed: (){
-                      Navigator.pop(context);
-                    },
-                    child: const Text('LOGIN'),)
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('LOGIN'),
+                )
               ],
             ),
           ],
