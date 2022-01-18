@@ -52,6 +52,33 @@ class ProductRepository{
         name: 'Italian pizza',
         price: 70,
       ),
+      Product(
+        category: Category.drug,
+        id: 8,
+        isFeatured: false,
+        name: 'Italian pizza',
+        price: 70,
+      ),
+      Product(
+        category: Category.drug,
+        id: 9,
+        isFeatured: false,
+        name: 'Italian pizza',
+        price: 70,
+      ),
+      Product(
+        category: Category.fast,
+        id: 10,
+        isFeatured: false,
+        name: 'Italian pizza',
+        price: 70,
+      ),Product(
+        category: Category.fast,
+        id: 11,
+        isFeatured: false,
+        name: 'Italian pizza',
+        price: 70,
+      ),
     ];
     if (category == Category.all){
       return allProducts;
