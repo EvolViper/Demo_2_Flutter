@@ -5,9 +5,23 @@ import 'package:demo_2_flutter/Demo/colors.dart';
 import 'package:demo_2_flutter/Demo/supplemental/cut_corners_border.dart';
 import 'backdrop.dart';
 import 'package:demo_2_flutter/Demo/model/product.dart';
+import 'category_menu_page.dart';
 
-class FissApp extends StatelessWidget {
+class FissApp extends StatefulWidget {
   const FissApp({Key? key}) : super(key: key);
+
+  @override
+  State<FissApp> createState() => _FissAppState();
+}
+
+class _FissAppState extends State<FissApp> {
+  Category _currentCategory = Category.all;
+
+  void _onCategoryTap(Category category){
+    setState(() {
+      _currentCategory = category;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +30,12 @@ class FissApp extends StatelessWidget {
       theme: _kShrineTheme,
       title: 'FISH',
       home: Backdrop(
-        currentCategory: Category.all,
-        frontLayer: HomePage(),
-        backLayer: Container(color: kShrineAscentPink,),
+        currentCategory: _currentCategory,
+        frontLayer: HomePage(category: _currentCategory,),
+        backLayer: CategoryMenuPage(
+          currentCategory: _currentCategory,
+          onCategoryTap: _onCategoryTap,
+        ),
         frontTitle: Text('FISH'),
         backTitle: Text('MENU'),
       ),
