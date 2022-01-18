@@ -1,8 +1,10 @@
+import 'package:demo_2_flutter/Demo/ad_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:demo_2_flutter/Demo/login.dart';
 import 'package:demo_2_flutter/Demo/home.dart';
 import 'package:demo_2_flutter/Demo/colors.dart';
 import 'package:demo_2_flutter/Demo/supplemental/cut_corners_border.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'backdrop.dart';
 import 'package:demo_2_flutter/Demo/model/product.dart';
 import 'category_menu_page.dart';
@@ -17,21 +19,57 @@ class FissApp extends StatefulWidget {
 class _FissAppState extends State<FissApp> {
   Category _currentCategory = Category.all;
 
-  void _onCategoryTap(Category category){
+
+
+  void _onCategoryTap(Category category) {
     setState(() {
       _currentCategory = category;
     });
   }
 
+//   @override
+//   void initState() {
+//     // TODO: implement initState
+//     super.initState();
+//
+//     _bannerAd = BannerAd(
+//       size: AdSize.banner,
+//       adUnitId: AdHelper.bannerAdUnit,
+//       request: AdRequest(),
+//       listener: BannerAdListener(
+//         onAdLoaded: (_){
+//           setState(() {
+//             _isBannerAdReady = true;
+//           });
+//         },
+//         onAdFailedToLoad: (ad, err){
+//           print('Failed to load a banner ad :${err.message}');
+//           _isBannerAdReady = false;
+//           ad.dispose();
+//         },
+//       ),
+//     );
+//     _bannerAd.load();
+//   }
+// @override
+//   void dispose() {
+//     _bannerAd.dispose();
+//     super.dispose();
+//   }
+
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: _kShrineTheme,
       title: 'FISH',
       home: Backdrop(
         currentCategory: _currentCategory,
-        frontLayer: HomePage(category: _currentCategory,),
+        frontLayer: HomePage(
+          category: _currentCategory,
+
+        ),
         backLayer: CategoryMenuPage(
           currentCategory: _currentCategory,
           onCategoryTap: _onCategoryTap,
@@ -39,9 +77,12 @@ class _FissAppState extends State<FissApp> {
         frontTitle: Text('FISH'),
         backTitle: Text('MENU'),
       ),
+
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
+
     );
+
   }
 
   Route<dynamic>? _getRoute(RouteSettings settings) {
@@ -53,6 +94,7 @@ class _FissAppState extends State<FissApp> {
       settings: settings,
       builder: (BuildContext context) => const loginPage(),
       fullscreenDialog: true,
+
     );
   }
 }
@@ -81,10 +123,9 @@ ThemeData _buildShrineTheme() {
     inputDecorationTheme: const InputDecorationTheme(
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
-          width: 2.0,
-          // color: kShrineBrown900,
-          color: kShrineAscentPink
-        ),
+            width: 2.0,
+            // color: kShrineBrown900,
+            color: kShrineAscentPink),
       ),
       border: CutCornersBorder(),
     ),
