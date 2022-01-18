@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   intl: ^0.17.0
   shrine_images: ^2.0.1
+  google_mobile_ads: ^1.0.1
 
 dev_dependencies:
   flutter_test:
