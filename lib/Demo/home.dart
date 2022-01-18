@@ -5,12 +5,14 @@ import 'package:intl/intl.dart';
 import 'package:demo_2_flutter/Demo/supplemental/asymmetric_view.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key, this.category = Category.all}) : super(key: key);
+
+  final Category category;
 
   @override
   Widget build(BuildContext context) {
     return AsymmetricView(
-       products: ProductRepository.loadProducts(Category.all),
+       products: ProductRepository.loadProducts(category),
        );
     // return Scaffold(
     //   appBar: AppBar(
