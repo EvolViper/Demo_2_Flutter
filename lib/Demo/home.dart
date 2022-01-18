@@ -3,6 +3,7 @@ import 'model/product.dart';
 import 'model/products_repository.dart';
 import 'package:intl/intl.dart';
 import 'package:demo_2_flutter/Demo/supplemental/asymmetric_view.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key, this.category = Category.all}) : super(key: key);
@@ -117,4 +118,10 @@ class HomePage extends StatelessWidget {
       );
     }).toList();
   }
+
+  Future<InitializationStatus> _initGoogleMobileAds(){
+    return MobileAds.instance.initialize();
+  }
+
+
 }
